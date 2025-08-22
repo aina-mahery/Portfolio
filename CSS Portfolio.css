@@ -1,0 +1,218 @@
+/* === Base Styles === */
+* { box-sizing: border-box; }
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0 40px; /* espace à gauche/droite pour éviter que le texte colle au bord */
+  background: #f4f4f4;
+  color: #333;
+}
+
+/* === Header === */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: #1a1a1a;
+  color: white;
+}
+
+.logo-title {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 40px;
+  margin-right: 10px;
+}
+
+/* === Language Switch Buttons === */
+.lang-switch button {
+  margin-right: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  background: #444;
+  color: white;
+  border: none;
+  border-radius: 3px;
+}
+
+/* === Intro Section === */
+.intro {
+  display: flex;
+  align-items: flex-start; /* aligne le haut du texte et de la photo */
+  gap: 40px;
+  padding: 40px;
+  padding-left: 60px; /* espace gauche spécifique à la section (optionnel) */
+  background: white;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 20px auto; /* centre horizontalement la section */
+}
+
+/* Bloc gauche : texte */
+.left {
+  flex: 2;
+  min-width: 300px;
+  max-width: 1000px;
+  word-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* s'assurer que le texte commence en haut */
+}
+
+/* Bloc droit : photo */
+.right {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start; /* force le haut du bloc photo */
+}
+
+/* Photo : taille, bordure et translation pour la remonter */
+.photo {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  transform: translateY(-10px); /* <-- remonte la photo : ajuste -20px / -40px / -60px si besoin */
+  transition: transform 0.25s ease; /* petit rendu fluide si tu modifies via DevTools */
+}
+
+/* === Content Section === */
+.content {
+  padding: 40px;
+  background: #fff;
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+/* === Intro Text Block === */
+.intro-section {
+  padding: 0;
+  background-color: transparent;
+  color: #333;
+}
+
+/* === Greeting Block === */
+#greeting-name {
+  font-size: 28px;
+  font-weight: normal;
+  margin-bottom: 5px;
+}
+
+#greeting-name strong {
+  font-weight: bold !important;
+  color: #1a1a1a;
+}
+
+#greeting-role {
+  font-size: 18px;
+  font-style: italic;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+#greeting-description {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 0;
+  color: #444;
+  word-break: break-word;
+}
+
+/* Sous-titre */
+.subtitle {
+  font-size: 18px;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+/* Texte descriptif */
+.intro-text {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+/* === Headings === */
+h3 {
+  margin-top: 30px;
+}
+
+/* === Lists === */
+ul {
+  list-style-type: square;
+  padding-left: 20px;
+}
+
+/* === Accordion === */
+.accordion {
+  margin-top: 20px;
+}
+
+.accordion-toggle {
+  width: 100%;
+  text-align: left;
+  padding: 10px 15px;
+  font-weight: bold;
+  background-color: #eee;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.accordion-toggle:hover {
+  background-color: #ddd;
+}
+
+.accordion-content {
+  display: none;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-left: 3px solid #1a1a1a;
+}
+
+.accordion-content ul {
+  padding-left: 20px;
+  list-style-type: disc;
+}
+
+/* === Responsive Design === */
+@media (max-width: 768px) {
+  body {
+    padding: 0 16px; /* réduit l'espace sur mobile */
+  }
+
+  .intro {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-left: 20px; /* réduit l'espace gauche sur mobile */
+    padding-right: 20px;
+  }
+
+  .left, .right {
+    max-width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .photo {
+    transform: none; /* annule la remontée sur mobile */
+    margin-top: 20px;
+  }
+}
+
+/* === Debug helpers (décommenter pour visualiser les boîtes) === */
+/*
+.intro { outline: 2px dashed blue; }
+.left  { outline: 2px dashed green; }
+.right { outline: 2px dashed orange; }
+.photo { outline: 2px dashed red; }
+*/
