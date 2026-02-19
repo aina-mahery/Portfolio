@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Noctisigma - Portfolio</title>
+  <meta name="description" content="Portfolio d'analyste stratégique — reporting, optimisation et solutions data.">
+  <link rel="icon" href="favicon.ico" />
+  <link rel="stylesheet" href="form-pt.css" />
+</head>
+<body>
+  <header>
+<nav class="sidebar">
+<div class="lang-switch" role="toolbar" aria-label="Choix de la langue">
+  <button type="button" class="lang-btn" data-lang="fr" aria-pressed="false">FR</button>
+  <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+</div>
+    <div class="logo-title">
+      <img src="logo-noctisigma.png" alt="Logo Noctisigma" class="logo" />
+      <h1>Noctisigma</h1>
+    </div>
+  <ul class="nav-links">
+    <li><a href="#greeting-name" id="nav-home"></a></li>
+    <li><a href="#about-title" id="nav-about"></a></li>
+    <li><a href="#passion-title" id="nav-passion"></a></li>
+    <li><a href="#strategic-title" id="nav-strategy"></a></li>
+    <li><a href="#skills-title" id="nav-skills"></a></li>
+    <li><a href="#experience-title" id="nav-experience"></a></li>
+    <li><a href="#connection-title" id="nav-connection"></a></li>
+  </ul>
+</nav>
+
+  </header>
+
+  <main>
+      <div class="container">
+    <section class="intro intro-section">
+      <div class="left">
+        <h2 id="greeting-name"></h2>
+        <p id="greeting-role" class="subtitle"></p>
+        <p id="greeting-description" class="intro-text"></p>
+
+        <h3 id="profile-title" class="gradient-text"></h3>
+        <p id="profile-text"></p>
+      </div>
+
+      <div class="right">
+        <img src="photo-aina.JPEG" alt="Photo de Aina" class="photo" />
+  <button class="download-cv" onclick="window.location.href='CV.pdf'"></button>
+      </div>
+    </section>
+
+
+    <section class="content">
+      <h3 id="about-title" class="gradient-text"></h3>
+      <p id="about-text"></p>
+  <button class="download-cv" onclick="window.location.href='CV.pdf'"></button>
+
+
+      <h3 id="passion-title" class="gradient-text"></h3>
+      <p id="passion-description"></p>
+
+      <h3 id="strategic-title" class="gradient-text"></h3>
+      <p id="strategic-text"></p>
+      <div id="arch-buttons" class="arch-buttons"></div>
+      <div id="arch-content" class="arch-content"></div>
+
+      <h3 id="experience-title" class="gradient-text"></h3>
+      <div id="experience-list" class="accordion"></div>
+
+      <h3 id="skills-title" class="gradient-text"></h3>
+      <ul id="skills-list"></ul>
+
+      <h3 id="connection-title" class="gradient-text"></h3>
+      <p id="connection-text"></p>
+      <form id="contact-form">
+      <label for="name"></label>
+      <input type="text" id="name" name="name" placeholder="Votre nom" required>
+      <label for="email"></label>
+      <input type="email" id="email" name="email" placeholder="Votre email" required>
+      <label for="message"></label>
+      <textarea id="message" name="message" rows="5" placeholder="Votre message..." required></textarea>
+
+    <button type="submit"></button>
+  </form>
+
+    </section>
+    </div>
+  </main>
+
+  <footer>
+<div style="text-align: center;">
+<p>&copy; 2026 Aina. Tous droits réservés.</p>
+</div>
+
+  </footer>
+  <script src="script-portfolio.js"></script>
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+  const langButtons = document.querySelectorAll('.lang-switch .lang-btn');
+  if (!langButtons.length) return;
+
+  const STORAGE_KEY = 'site_lang';
+  const stored = localStorage.getItem(STORAGE_KEY);
+  const navLang = navigator.language ? navigator.language.toLowerCase() : '';
+  const initial = stored || (navLang.startsWith('fr') ? 'fr' : 'en');
+
+  function setActiveLang(lang, persist = true) {
+    langButtons.forEach(btn => {
+      const isActive = btn.dataset.lang === lang;
+      btn.classList.toggle('active', isActive);
+      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+    if (persist) localStorage.setItem(STORAGE_KEY, lang);
+    document.dispatchEvent(new CustomEvent('lang:changed', { detail: { lang } }));
+  }
+  setActiveLang(initial, false);
+
+  langButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const lang = btn.dataset.lang;
+      if (!lang) return;
+      setActiveLang(lang, true);
+    });
+  });
+});
+</script>
+</body>
+</html>
