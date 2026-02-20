@@ -467,47 +467,51 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 });
 (function() {
-  const btn = document.getElementById('download-cv-btn');
-  const select = document.getElementById('lang-select');
+  const buttons = document.querySelectorAll('.download-cv');
+  if (!buttons.length) return;
 
   const files = {
     fr: 'Aina-Mahery-CV_FR.pdf',
     en: 'Aina-Mahery-CV_EN.pdf'
   };
 
-  const getLang = () => {
-    if (select) return select.value;
-    if (typeof currentLang !== 'undefined' && currentLang) return String(currentLang).slice(0,2).toLowerCase();
+  const getLangFromUI = () => {
+    if (typeof currentLang !== 'undefined' && currentLang) {
+      return String(currentLang).slice(0,2).toLowerCase();
+    }
+    const select = document.getElementById('lang-select');
+    if (select) return select.value.slice(0,2).toLowerCase();
     const active = document.querySelector('.lang-switch button.active');
     if (active) return active.textContent.trim().slice(0,2).toLowerCase();
     return 'fr';
   };
 
-  const handler = (e) => {
-    e && e.preventDefault();
-    const lang = getLang() === 'en' ? 'en' : 'fr';
-    const file = files[lang];
+  const downloadByAnchor = (fileUrl, fileName) => {
     const a = document.createElement('a');
-    a.href = file;
-    a.setAttribute('download', file);
+    a.href = fileUrl;
+    a.setAttribute('download', fileName || '');
     document.body.appendChild(a);
     a.click();
     a.remove();
   };
 
-  btn.addEventListener('click', handler);
-  btn.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.code === 'Space' || e.key === ' ') {
-      e.preventDefault();
-      handler(e);
-    }
-  });
+  const handler = (e) => {
+    e && e.preventDefault();
+    const lang = getLangFromUI() === 'en' ? 'en' : 'fr';
+    const fileName = files[lang];
+    const fileUrl = new URL(fileName, window.location.href).href;
+    downloadByAnchor(fileUrl, fileName);
+  };
 
-  if (select) {
-    select.addEventListener('change', () => {
-      const lang = getLang();
-      btn.textContent = `📄 Télécharger le CV (${lang.toUpperCase()})`;
+  buttons.forEach(btn => {
+    btn.setAttribute('type', 'button');
+    btn.tabIndex = 0;
+    btn.addEventListener('click', handler);
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.code === 'Space' || e.key === ' ') {
+        e.preventDefault();
+        handler(e);
+      }
     });
-    btn.textContent = `📄 Télécharger le CV (${getLang().toUpperCase()})`;
-  }
+  });
 })();
