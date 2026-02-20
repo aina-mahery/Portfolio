@@ -530,11 +530,16 @@ input:focus, textarea:focus { outline: none; border-color: var(--accent-color); 
   font-weight: bold;
   cursor: pointer;
 }
+    .lang-switch {
+    position: relative;
+    z-index: 1000;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
 }
+
 
 
 
