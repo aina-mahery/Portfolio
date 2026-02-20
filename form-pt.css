@@ -114,6 +114,16 @@ b {
   color: transparent;
 }
 
+ul.indented-list {
+  padding-left: 1.8rem;
+  margin: 1rem 0;
+  list-style-position: outside;
+}
+
+ul.indented-list li {
+  margin-bottom: 0.5rem;
+}
+
 .logo-title {
   width: 100%;
   padding: 6px;
@@ -555,4 +565,5 @@ input:focus, textarea:focus { outline: none; border-color: var(--accent-color); 
 @media (min-width: 901px) {
   html { font-size: 90%; }
 }
+
 
