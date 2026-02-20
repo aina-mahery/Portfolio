@@ -517,24 +517,25 @@ input:focus, textarea:focus { outline: none; border-color: var(--accent-color); 
     overflow-y: auto;
   }
 
-  .menu-toggle {
-    display: block !important;
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    z-index: 1100;
-    background: var(--accent-color);
-    padding: 10px 15px;
-    border-radius: 8px;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-  }
+.menu-toggle {
+  display: block !important;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 2000;
+  background: var(--accent-color);
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
 }
 
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
 }
+
 
 
 
