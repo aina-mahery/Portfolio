@@ -432,14 +432,37 @@ const renderSkills = (skillsData) => {
 
 document.addEventListener('DOMContentLoaded', initPortfolio);
 
-const menuBtn = document.getElementById('menu-toggle');
-const sidebar = document.querySelector('header');
+window.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('menu-toggle');
+    const side = document.querySelector('header');
 
-menuBtn.addEventListener('click', () => {
-    sidebar.classList.toggle('active');
-    menuBtn.innerText = sidebar.classList.contains('active') ? 'FERMER' : 'MENU';
-});
+    if (btn && side) {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            side.classList.toggle('active');
+            
+            if (side.classList.contains('active')) {
+                btn.innerText = "FERMER";
+            } else {
+                btn.innerText = "MENU";
+            }
+        });
 
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => sidebar.classList.remove('active'));
+        const links = document.querySelectorAll('.nav-links a');
+        links.forEach(l => {
+            l.addEventListener('click', () => {
+                side.classList.remove('active');
+                btn.innerText = "MENU";
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!side.contains(e.target) && !btn.contains(e.target)) {
+                side.classList.remove('active');
+                btn.innerText = "MENU";
+            }
+        });
+    } else {
+        console.error("Le bouton ou le header n'a pas été trouvé dans le DOM");
+    }
 });
