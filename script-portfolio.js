@@ -466,3 +466,59 @@ window.addEventListener('DOMContentLoaded', () => {
         console.error("Le bouton ou le header n'a pas été trouvé dans le DOM");
     }
 });
+
+(function() {
+  const btn = document.getElementById('download-cv-btn');
+  if (!btn) return;
+
+  if (!btn.getAttribute('aria-label')) {
+    btn.setAttribute('aria-label', 'Télécharger le CV');
+  }
+  btn.setAttribute('role', 'button');
+  btn.tabIndex = 0;
+
+  const safeFileName = {
+    fr: 'Aina-Mahery-CV_FR.pdf',
+    en: 'Aina-Mahery-CV_EN.pdf'
+  };
+
+  const getLangFromUI = () => {
+    if (typeof currentLang !== 'undefined' && currentLang) {
+      return String(currentLang).slice(0,2).toLowerCase();
+    }
+    const active = document.querySelector('.lang-switch button.active');
+    if (active) return active.textContent.trim().slice(0,2).toLowerCase();
+    return 'fr';
+  };
+
+  const downloadFile = (fileUrl, fileName) => {
+    const a = document.createElement('a');
+    a.href = encodeURI(fileUrl);
+    a.setAttribute('download', fileName || '');
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    setTimeout(() => {
+      window.open(fileUrl, '_blank', 'noopener,noreferrer');
+    }, 300);
+  };
+
+  const handler = (e) => {
+    e.preventDefault();
+
+    const lang = getLangFromUI();
+    const fileName = safeFileName[lang === 'en' ? 'en' : 'fr'];
+    const fileUrl = `./${fileName}`;
+
+    downloadFile(fileUrl, fileName);
+  };
+
+  btn.addEventListener('click', handler);
+  btn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handler(e);
+    }
+  });
+})();
