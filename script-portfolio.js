@@ -466,70 +466,48 @@ window.addEventListener('DOMContentLoaded', () => {
         console.error("Le bouton ou le header n'a pas été trouvé dans le DOM");
     }
 });
-
 (function() {
   const btn = document.getElementById('download-cv-btn');
-  if (!btn) return;
+  const select = document.getElementById('lang-select');
 
-  if (!btn.getAttribute('aria-label')) {
-    btn.setAttribute('aria-label', 'Télécharger le CV');
-  }
-  btn.setAttribute('role', 'button');
-  btn.tabIndex = 0;
-
-  const safeFileName = {
+  const files = {
     fr: 'Aina-Mahery-CV_FR.pdf',
     en: 'Aina-Mahery-CV_EN.pdf'
   };
 
-  const getLangFromUI = () => {
-    if (typeof currentLang !== 'undefined' && currentLang) {
-      return String(currentLang).slice(0,2).toLowerCase();
-    }
+  const getLang = () => {
+    if (select) return select.value;
+    if (typeof currentLang !== 'undefined' && currentLang) return String(currentLang).slice(0,2).toLowerCase();
     const active = document.querySelector('.lang-switch button.active');
     if (active) return active.textContent.trim().slice(0,2).toLowerCase();
     return 'fr';
   };
 
-  const tryDownload = async (fileUrl, fileName) => {
-    console.log('Tentative de téléchargement — URL générée :', fileUrl);
-
-    try {
-      const head = await fetch(fileUrl, { method: 'HEAD' });
-      if (!head.ok) {
-        console.warn('HEAD response non OK', head.status, head.statusText);
-        window.open(fileUrl, '_blank', 'noopener,noreferrer');
-        return;
-      }
-
-      // créé le lien et force le téléchargement
-      const a = document.createElement('a');
-      a.href = fileUrl;
-      a.setAttribute('download', fileName || '');
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-    } catch (err) {
-      console.error('Erreur fetch/tryDownload:', err);
-      window.open(fileUrl, '_blank', 'noopener,noreferrer');
-    }
-  };
-
   const handler = (e) => {
-    e.preventDefault();
-
-    const lang = getLangFromUI();
-    const fileName = safeFileName[lang === 'en' ? 'en' : 'fr'];
-    const fileUrl = new URL(fileName, window.location.href).href;
-
-    tryDownload(fileUrl, fileName);
+    e && e.preventDefault();
+    const lang = getLang() === 'en' ? 'en' : 'fr';
+    const file = files[lang];
+    const a = document.createElement('a');
+    a.href = file;
+    a.setAttribute('download', file);
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
   };
 
   btn.addEventListener('click', handler);
   btn.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
+    if (e.key === 'Enter' || e.code === 'Space' || e.key === ' ') {
       e.preventDefault();
       handler(e);
     }
   });
+
+  if (select) {
+    select.addEventListener('change', () => {
+      const lang = getLang();
+      btn.textContent = `📄 Télécharger le CV (${lang.toUpperCase()})`;
+    });
+    btn.textContent = `📄 Télécharger le CV (${getLang().toUpperCase()})`;
+  }
 })();
