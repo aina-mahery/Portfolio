@@ -514,11 +514,128 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   });
 })();
+(function() {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
 
+  let statusEl = document.getElementById('form-status');
+  if (!statusEl) {
+    statusEl = document.createElement('div');
+    statusEl.id = 'form-status';
+    statusEl.setAttribute('role', 'status');
+    statusEl.setAttribute('aria-live', 'polite');
+    statusEl.style.position = 'absolute';
+    statusEl.style.left = '-9999px';
+    form.appendChild(statusEl);
+  }
 
+  const messages = {
+    fr: {
+      sending: "Envoi en cours...",
+      sent: "Message envoyé !",
+      error: "Erreur lors de l'envoi. Réessayez.",
+      network: "Erreur réseau. Vérifiez votre connexion.",
+      invalidEmail: "Veuillez fournir une adresse email valide.",
+      spamDetected: "Soumission suspecte détectée."
+    },
+    en: {
+      sending: "Sending...",
+      sent: "Message sent!",
+      error: "Error sending message. Please try again.",
+      network: "Network error. Check your connection.",
+      invalidEmail: "Please provide a valid email address.",
+      spamDetected: "Suspicious submission detected."
+    }
+  };
 
+  const isValidEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
 
+  form.addEventListener('submit', async function(event) {
+    event.preventDefault();
 
+    const lang = typeof currentLang !== 'undefined' ? currentLang : 'fr';
+    const msg = messages[lang] || messages.fr;
 
+    const submitButton = form.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton ? submitButton.innerText : null;
 
+    const honeypot = form.querySelector('input[name="hp"]');
+    if (honeypot && honeypot.value) {
+      statusEl.textContent = msg.spamDetected;
+      return;
+    }
 
+    const name = (form.elements['name'] && form.elements['name'].value || '').trim();
+    const email = (form.elements['email'] && form.elements['email'].value || '').trim();
+    const message = (form.elements['message'] && form.elements['message'].value || '').trim();
+
+    if (!isValidEmail(email)) {
+      statusEl.textContent = msg.invalidEmail;
+      return;
+    }
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.innerText = msg.sending;
+      submitButton.setAttribute('aria-busy', 'true');
+    }
+
+    statusEl.textContent = msg.sending;
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
+
+    try {
+      const formData = new FormData(form);
+      formData.append("access_key", "12270239-d6b1-43f2-bc7a-b85f1687412e");
+
+      const resp = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+        signal: controller.signal,
+      });
+
+      clearTimeout(timeout);
+
+      if (!resp.ok) {
+        console.error('HTTP error', resp.status);
+        statusEl.textContent = msg.error;
+        throw new Error('HTTP ' + resp.status);
+      }
+
+      const data = await resp.json();
+
+      if (data.success) {
+        statusEl.textContent = msg.sent;
+        form.reset();
+        if (submitButton) submitButton.innerText = msg.sent;
+        setTimeout(() => {
+          if (submitButton) {
+            submitButton.innerText = originalButtonText || (portfolioData?.[lang]?.btnSend || 'Envoyer');
+            submitButton.disabled = false;
+            submitButton.removeAttribute('aria-busy');
+          }
+        }, 3000);
+      } else {
+        console.error('API error', data);
+        statusEl.textContent = data.message || msg.error;
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.innerText = originalButtonText || (portfolioData?.[lang]?.btnSend || 'Envoyer');
+          submitButton.removeAttribute('aria-busy');
+        }
+      }
+    } catch (err) {
+      clearTimeout(timeout);
+      console.error('Fetch error:', err);
+      statusEl.textContent = (err.name === 'AbortError') ? msg.network : msg.network;
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.innerText = originalButtonText || (portfolioData?.[lang]?.btnSend || 'Envoyer');
+        submitButton.removeAttribute('aria-busy');
+      }
+    }
+  });
+})();
