@@ -491,17 +491,28 @@ window.addEventListener('DOMContentLoaded', () => {
     return 'fr';
   };
 
-  const downloadFile = (fileUrl, fileName) => {
-    const a = document.createElement('a');
-    a.href = encodeURI(fileUrl);
-    a.setAttribute('download', fileName || '');
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+  const tryDownload = async (fileUrl, fileName) => {
+    console.log('Tentative de téléchargement — URL générée :', fileUrl);
 
-    setTimeout(() => {
+    try {
+      const head = await fetch(fileUrl, { method: 'HEAD' });
+      if (!head.ok) {
+        console.warn('HEAD response non OK', head.status, head.statusText);
+        window.open(fileUrl, '_blank', 'noopener,noreferrer');
+        return;
+      }
+
+      // créé le lien et force le téléchargement
+      const a = document.createElement('a');
+      a.href = fileUrl;
+      a.setAttribute('download', fileName || '');
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    } catch (err) {
+      console.error('Erreur fetch/tryDownload:', err);
       window.open(fileUrl, '_blank', 'noopener,noreferrer');
-    }, 300);
+    }
   };
 
   const handler = (e) => {
@@ -509,9 +520,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const lang = getLangFromUI();
     const fileName = safeFileName[lang === 'en' ? 'en' : 'fr'];
-    const fileUrl = `./${fileName}`;
+    const fileUrl = new URL(fileName, window.location.href).href;
 
-    downloadFile(fileUrl, fileName);
+    tryDownload(fileUrl, fileName);
   };
 
   btn.addEventListener('click', handler);
