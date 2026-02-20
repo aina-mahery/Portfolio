@@ -431,3 +431,15 @@ const renderSkills = (skillsData) => {
 };
 
 document.addEventListener('DOMContentLoaded', initPortfolio);
+
+const menuBtn = document.getElementById('menu-toggle');
+const sidebar = document.querySelector('header');
+
+menuBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('active');
+    menuBtn.innerText = sidebar.classList.contains('active') ? 'FERMER' : 'MENU';
+});
+
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => sidebar.classList.remove('active'));
+});
