@@ -39,10 +39,10 @@ const portfolioData = {
 
     skillsTitle: "MON ARSENAL TECHNIQUE",
     skills: [
-      { title: "🛠️ Techniques & Outils", list: ["Excel avancé : formules complexes, Power Query, macros VBA", "Power BI : dashboards, DAX, modélisation de données", "SQL : requêtes, gestion et structuration de bases de données", "Microsoft 365 : Écosystème collaboratif (SharePoint, Teams, Power Automate)", "Langages en apprentissage : HTML, CSS, JavaScript, Python (Data Science)"] },
-      { title: "📊 Analyse & Reporting", list: ["Conception & Fiabilisation : Automatisation de reportings et garantie de l'intégrité des données (Data Quality)", "Suivi et interprétation de KPI stratégiques", "Data Storytelling : Traduction visuelle de la donnée pour captiver et convaincre.", "Audit & Diagnostic : Détection d’anomalies et mise en lumière de leviers d’action"] },
-      { title: "👥 Management & Leadership", list: ["Supervision et coordination d’équipes", "Supervision & Cohésion : Coordination d’équipes multiculturelles et agiles", "Accompagnement au changement : Formation et acculturation des équipes aux nouveaux outils.", "Pilotage de Performance : Optimisation du capital humain et montée en compétence.", "Arbitrage Stratégique : Résolution de problèmes complexes et gestion des priorités.", "Ingénierie de Décision : Définition des rôles, responsabilités et circuits de validation"] },
-      { title: "🌟 Soft Skills", list: ["Esprit analytique & sens critique : Capacité à décomposer la complexité et à questionner l'existant", "Autonomie & adaptabilité : Efficacité immédiate dans des environnements mouvants.", "Communication claire, structurée et impactante : Savoir transmettre l'essentiel pour engager l'action", "Vision stratégique & prise de décision éclairée : Voir plus loin pour décider mieux.", "Curiosité et apprentissage continu : Une veille permanente pour intégrer les innovations de demain.", "Résilience & gestion du stress en contexte complexe : Garder le cap et la précision sous haute pression.", "Négociation, diplomatie & influence constructive : Aligner les intérêts pour faire avancer les projets.", "Créativité & innovation orientée solution : Penser \"hors du cadre\" pour résoudre des problèmes concrets.", "Sens de la priorisation & gestion du temps : Maximiser la valeur de la monnaie centrale de mon égosystème", "Intelligence situationnelle & écoute active : Comprendre les besoins profonds derrière les demandes formulées."] }
+      { title: "🛠️ Techniques & Outils", subtitle: "Ce que je maîtrise pour construire, automatiser, modéliser", list: ["Excel avancé : formules complexes, Power Query, macros VBA", "Power BI : dashboards, DAX, modélisation de données", "SQL : requêtes, gestion et structuration de bases de données", "Microsoft 365 : Écosystème collaboratif (SharePoint, Teams, Power Automate)", "Langages en apprentissage : HTML, CSS, JavaScript, Python (Data Science)"] },
+      { title: "📊 Analyse & Reporting", subtitle: "Ce que je sais lire, interpréter, rendre actionnable", list: ["Conception & Fiabilisation : Automatisation de reportings et garantie de l'intégrité des données (Data Quality)", "Suivi et interprétation de KPI stratégiques", "Data Storytelling : Traduction visuelle de la donnée pour captiver et convaincre.", "Audit & Diagnostic : Détection d’anomalies et mise en lumière de leviers d’action"] },
+      { title: "👥 Management & Leadership", subtitle: "Ce que je mobilise pour structurer, faire grandir, résoudre", list: ["Supervision et coordination d’équipes", "Supervision & Cohésion : Coordination d’équipes multiculturelles et agiles", "Accompagnement au changement : Formation et acculturation des équipes aux nouveaux outils.", "Pilotage de Performance : Optimisation du capital humain et montée en compétence.", "Arbitrage Stratégique : Résolution de problèmes complexes et gestion des priorités.", "Ingénierie de Décision : Définition des rôles, responsabilités et circuits de validation"] },
+      { title: "🌟 Soft Skills", subtitle: "Ce qui me rend autonome, stratégique, et singulier", list: ["Esprit analytique & sens critique : Capacité à décomposer la complexité et à questionner l'existant", "Autonomie & adaptabilité : Efficacité immédiate dans des environnements mouvants.", "Communication claire, structurée et impactante : Savoir transmettre l'essentiel pour engager l'action", "Vision stratégique & prise de décision éclairée : Voir plus loin pour décider mieux.", "Curiosité et apprentissage continu : Une veille permanente pour intégrer les innovations de demain.", "Résilience & gestion du stress en contexte complexe : Garder le cap et la précision sous haute pression.", "Négociation, diplomatie & influence constructive : Aligner les intérêts pour faire avancer les projets.", "Créativité & innovation orientée solution : Penser \"hors du cadre\" pour résoudre des problèmes concrets.", "Sens de la priorisation & gestion du temps : Maximiser la valeur de la monnaie centrale de mon égosystème", "Intelligence situationnelle & écoute active : Comprendre les besoins profonds derrière les demandes formulées."] }
     ],
 
     connectionTitle: "CONTACTEZ-MOI",
@@ -91,10 +91,55 @@ const portfolioData = {
 
   skillsTitle: "MY TECHNICAL ARSENAL",
   skills: [
-{ title: "🛠️ Techniques & Tools", list: ["Advanced Excel: complex formulas, Power Query, VBA macros", "Power BI: dashboards, DAX, data modeling", "SQL: queries, database management and structuring", "Microsoft 365: Collaborative ecosystem (SharePoint, Teams, Power Automate)", "Languages in learning: HTML, CSS, JavaScript, Python (Data Science)"] },
-{ title: "📊 Analysis & Reporting", list: ["Design & Reliability: Automation of reportings and ensuring data integrity (Data Quality)", "Monitoring and interpretation of strategic KPIs", "Data Storytelling: Visual translation of data to captivate and convince.", "Audit & Diagnosis: Detection of anomalies and highlighting action levers"] },
-{ title: "👥 Management & Leadership", list: ["Supervision and coordination of teams", "Supervision & Cohesion: Coordination of multicultural and agile teams", "Change Support: Training and acculturation of teams to new tools.", "Performance Management: Optimization of human capital and skills development.", "Strategic Arbitration: Resolution of complex problems and priority management.", "Decision Engineering: Definition of roles, responsibilities, and approval workflows"] },
-{ title: "🌟 Soft Skills", list: ["Analytical mindset & critical thinking: Ability to decompose complexity and question the existing", "Autonomy & adaptability: Immediate effectiveness in changing environments.", "Clear, structured and impactful communication: Knowing how to convey essentials to drive action", "Strategic vision & informed decision-making: Seeing further to decide better.", "Curiosity and continuous learning: Permanent monitoring to integrate tomorrow's innovations.", "Resilience & stress management in complex contexts: Staying on course and precise under high pressure.", "Negotiation, diplomacy & constructive influence: Aligning interests to advance projects.", "Creativity & solution-oriented innovation: Thinking 'outside the box' to solve concrete problems.", "Sense of prioritization & time management: Maximizing the value of the central currency of my egosystem", "Situational intelligence & active listening: Understanding the deep needs behind expressed requests."] }  ],
+{ 
+        title: "🛠️ Techniques & Tools", 
+        subtitle: "What I master to build, automate, and model", 
+        list: [
+            "Advanced Excel: complex formulas, Power Query, VBA macros", 
+            "Power BI: dashboards, DAX, data modeling", 
+            "SQL: queries, database management and structuring", 
+            "Microsoft 365: Collaborative ecosystem (SharePoint, Teams, Power Automate)", 
+            "Languages in learning: HTML, CSS, JavaScript, Python (Data Science)"
+        ] 
+      },
+      { 
+        title: "📊 Analysis & Reporting", 
+        subtitle: "What I read, interpret, and make actionable", 
+        list: [
+            "Design & Reliability: Reporting automation and ensuring data integrity (Data Quality)", 
+            "Monitoring and interpretation of strategic KPIs", 
+            "Data Storytelling: Visual data translation to captivate and convince", 
+            "Audit & Diagnosis: Anomaly detection and highlighting areas for improvement"
+        ] 
+      },
+      { 
+        title: "👥 Management & Leadership", 
+        subtitle: "What I deploy to structure, grow, and resolve", 
+        list: [
+            "Team supervision and coordination", 
+            "Supervision & Cohesion: Coordination of multicultural and agile teams", 
+            "Change Management: Training and teams acculturation to new tools", 
+            "Performance Management: Optimizing human capital and skill development", 
+            "Strategic Arbitration: Complex problem solving and priority management", 
+            "Decision Engineering: Definition of roles, responsibilities, and validation workflows"
+        ] 
+      },
+      { 
+        title: "🌟 Soft Skills", 
+        subtitle: "What makes me autonomous, strategic, and unique", 
+        list: [
+            "Analytical mindset & Critical thinking: Ability to break down complexity and challenge the status quo", 
+            "Autonomy & Adaptability: Immediate efficiency in fast-moving environments", 
+            "Clear, structured, and impactful communication: Transmitting essentials to drive action", 
+            "Strategic vision & Informed decision-making: Seeing further to decide better", 
+            "Curiosity and continuous learning: Constant watch to integrate tomorrow's innovations", 
+            "Resilience & Stress management: Staying on track and precise under high pressure", 
+            "Negotiation, Diplomacy & Constructive influence: Aligning interests to advance projects", 
+            "Creativity & Solution-oriented innovation: Thinking outside the box to solve real-world problems", 
+            "Prioritization & Time Management: Maximizing the value of my ecosystem's core currency", 
+            "Situational Intelligence & Active Listening: Understanding the deep needs behind stated requests"
+        ] 
+      }  ],
 
   connectionTitle: "CONTACT ME",
   connectionText: "Curious to collaborate or simply to discuss your strategic issues? Let's connect.",
@@ -368,7 +413,7 @@ const renderSkills = (skillsData) => {
 
   const frag = document.createDocumentFragment();
 
-  skillsData.forEach(skill => {
+skillsData.forEach(skill => {
     const li = document.createElement('li');
     li.className = 'skill-card';
     li.setAttribute('tabindex', '0');
@@ -377,7 +422,17 @@ const renderSkills = (skillsData) => {
 
     const header = document.createElement('div');
     header.className = 'skill-card-header';
-    header.innerHTML = `<h4>${skill.title}</h4>`;
+    
+    const textWrapper = document.createElement('div');
+    textWrapper.className = 'skill-text-wrapper';
+    
+    let headerHTML = `<h4>${skill.title}</h4>`;
+    if (skill.subtitle) {
+      headerHTML += `<p class="skill-subtitle"><em>${skill.subtitle}</em></p>`;
+    }
+    
+    textWrapper.innerHTML = headerHTML;
+    header.appendChild(textWrapper);
 
     const icon = document.createElement('span');
     icon.className = 'skill-card-icon';
