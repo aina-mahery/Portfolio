@@ -378,11 +378,25 @@ button:hover, .download-cv:hover {
   background-color: #243146;
 }
 
+.skill-text-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4px; /* Espace entre le titre et le sous-titre */
+    flex: 1;  /* Prend toute la place pour pousser l'icône à droite */
+}
+
+.skill-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.2;
+}
+
 .skill-card-header {
-  padding: 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    align-items: center; /* Centre verticalement le texte et l'icône ▼ */
+    justify-content: space-between;
+    padding: 1.5rem;
 }
 
 .skill-card-header h4 { color: var(--text-primary); font-size: 1rem; }
@@ -567,6 +581,5 @@ input:focus, textarea:focus { outline: none; border-color: var(--accent-color); 
 @media (min-width: 901px) {
   html { font-size: 90%; }
 }
-
 
 
